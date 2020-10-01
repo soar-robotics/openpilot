@@ -18,6 +18,7 @@ tools/scripts/setup_ssh_keys.py commaci2
 
 export SKIP_FW_QUERY="1"
 export FINGERPRINT="TOYOTA COROLLA TSS2 2019"
+export LOG_TIMESTAMPS="1"
 
 export PASSIVE="0"
 exec ./launch_chffrplus.sh
