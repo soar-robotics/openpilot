@@ -1225,9 +1225,6 @@ static void process_driver_camera(MultiCameraState *s, CameraState *c, int cnt) 
   if (env_send_driver) {
     framed.setImage(get_frame_image(&c->buf));
   }
-  if (c->camera_id == CAMERA_ID_AR0231) {
-    ar0231_process_registers(s, c, framed);
-  }
   s->pm->send("driverCameraState", msg);
 }
 
@@ -1246,10 +1243,6 @@ void process_road_camera(MultiCameraState *s, CameraState *c, int cnt) {
   if (c == &s->road_cam) {
     framed.setTransform(b->yuv_transform.v);
     LOGT(c->buf.cur_frame_data.frame_id, "%s: Transformed", "RoadCamera");
-  }
-
-  if (c->camera_id == CAMERA_ID_AR0231) {
-    ar0231_process_registers(s, c, framed);
   }
 
   s->pm->send(c == &s->road_cam ? "roadCameraState" : "wideRoadCameraState", msg);
