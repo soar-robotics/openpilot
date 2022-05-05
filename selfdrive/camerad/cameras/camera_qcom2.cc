@@ -1124,13 +1124,6 @@ void camera_autoexposure(CameraState *s, float grey_frac) {
   s->set_camera_exposure(grey_frac);
 }
 
-static float ar0231_parse_temp_sensor(uint16_t calib1, uint16_t calib2, uint16_t data_reg) {
-  // See AR0231 Developer Guide - page 36
-  float slope = (125.0 - 55.0) / ((float)calib1 - (float)calib2);
-  float t0 = 55.0 - slope * (float)calib2;
-  return t0 + slope * (float)data_reg;
-}
-
 static void driver_cam_auto_exposure(CameraState *c, SubMaster &sm) {
   struct ExpRect {int x1, x2, x_skip, y1, y2, y_skip;};
   const CameraBuf *b = &c->buf;
